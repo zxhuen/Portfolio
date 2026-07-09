@@ -507,6 +507,41 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        .footer {
+            margin-top: 80px;
+            padding: 35px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 18px 0;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #b5b5b5;
+            transition: color .25s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #0077ed;
+        }
+        
+        .footer-note {
+            color: #888;
+            font-size: 0.9rem;
+        }
         /* --- ANIMATION KEYFRAMES --- */
         
         @keyframes fadeInUp {
@@ -566,7 +601,7 @@
         <div class="hero-bg-orb"></div>
         <h2 class="hero-name">Hi, I'm Zhike Esguerra</h2>
         <h1 class="hero-title">Software and AI Engineer</h1>
-        <p class="hero-tagline">Software & AI Engineer building scalable APIs and intelligent automation solutions for real-world applications.</p>
+        <p class="hero-tagline">building scalable APIs and intelligent automation solutions for real-world applications.</p>
         <div class="hero-buttons">
             <a href="#projects" class="btn btn-primary">View Projects</a>
             <a href="#contact" class="btn btn-secondary">Contact Me</a>
@@ -745,26 +780,76 @@
                 </div>
             </div>
 
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent simulated securely!');">
+            <form class="contact-form" id="contact-form">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Alex Morgan" required>
+                    <input type="text" id="name" name="name" placeholder="Alex Morgan" required>
                 </div>
+
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="alex@company.com" required>
+                    <input type="email" id="email" name="email" placeholder="alex@company.com" required>
                 </div>
+
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" rows="5" placeholder="Let's build a secure API microservice structure..." required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Let's build a secure API microservice structure..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 10px;">Send Message</button>
+
+                <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 10px;">
+                    Send Message
+                </button>
+
+                <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+                <script>
+                    emailjs.init({
+                        publicKey: "e7DxwLIaYZAnGhrZm",
+                    });
+
+
+                    const form = document.getElementById("contact-form");
+
+                    form.addEventListener("submit", async(e) => {
+                        e.preventDefault();
+
+                        try {
+                            await emailjs.send("service_k4garfd", "template_guu44l9", {
+                                name: document.getElementById("name").value,
+                                email: document.getElementById("email").value,
+                                message: document.getElementById("message").value,
+                            });
+
+                            alert("Message sent successfully!");
+
+                            form.reset();
+
+                        } catch (error) {
+                            console.error(error);
+                            alert("Failed to send message.");
+                        }
+                    });
+                </script>
             </form>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Zhike Esguerra. All rights reserved.</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Zhike Esguerra. All rights reserved.</p>
+
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="mailto:your@email.com">Email</a>
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/yourusername/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+
+            <p class="footer-note">
+                Built with HTML, CSS, and JavaScript.
+            </p>
+        </div>
     </footer>
 
     <script>
