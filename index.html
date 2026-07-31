@@ -842,13 +842,12 @@
 
         // Terminal Typewriter Effect
         const terminalLines = [
-            `<span class="code-keyword">class</span> <span class="code-var">Info</span>:`,
+            `<span class="code-keyword">class</span> <span class="code-var">Me</span>:`,
             `  name = <span class="code-string">"Zhike Esguerra"</span>`,
             `  role = <span class="code-string">"Software & AI Engineer"</span>`,
-            `  stack = [<span class="code-string">"FastAPI"</span>, <span class="code-string">"Python"</span>]`,
             `<br>`,
-            `  <span class="code-keyword">def</span> <span class="code-var">status</span>(self):`,
-            `    <span class="code-keyword">return</span> <span class="code-string">"Ready to build."</span>`
+            `  <span class="code-keyword">def</span> <span class="code-var">__str__</span>(self):`,
+            `    <span class="code-keyword">return</span> <span class="code-string">"Building backend & AI solutions."</span>`
         ];
 
         const terminalBody = document.getElementById("terminalBody");
